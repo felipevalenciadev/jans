@@ -33,9 +33,10 @@ jobs:
 
       - name: Generate SHA256
         run: |
-          cd jans-casa/app/target
-          sha256sum jans-casa.war > jans-casa.war.sha256
-          cat jans-casa.war.sha256
+          echo "=== Buscando el WAR generado ==="
+          find . -name "*.war" 2>/dev/null
+          echo "=== Contenido de jans-casa/app/target ==="
+          ls -la jans-casa/app/target/ 2>/dev/null || echo "Directorio no existe"
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
