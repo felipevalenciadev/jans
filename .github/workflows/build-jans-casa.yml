@@ -33,8 +33,9 @@ jobs:
 
       - name: Generate SHA256
         run: |
-          echo "=== Todos los WAR generados ==="
-          find . -name "*.war" 2>/dev/null
+          cp jans-casa/app/target/casa-0.0.0-nightly.war jans-casa.war
+          sha256sum jans-casa.war > jans-casa.war.sha256
+          cat jans-casa.war.sha256
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
