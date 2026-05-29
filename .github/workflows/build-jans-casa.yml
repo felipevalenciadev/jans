@@ -6,7 +6,11 @@ on:
       - main
     paths:
       - 'jans-casa/**'
+      - '.github/workflows/build-jans-casa.yml'
   workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
