@@ -28,10 +28,10 @@ jobs:
           mvn clean package -DskipTests -Dmaven.buildNumber.skip=true
 
       - name: Generate SHA256
+      - working-directory: jans-casa/app/target
         run: |
-          sha256sum jans-casa/app/target/jans-casa.war \
-              > jans-casa/app/target/jans-casa.war.sha256
-          cat jans-casa/app/target/jans-casa.war.sha256
+          sha256sum jans-casa.war > jans-casa.war.sha256
+          cat jans-casa.war.sha256
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
