@@ -47,4 +47,9 @@
         <listener-class>io.jans.casa.core.filter.LocaleInterceptor</listener-class>
     </listener>
 
+    <!-- Invalidates casa session if the OAuth session has been removed from the database -->
+    <listener>
+        <listener-class>io.jans.casa.core.filter.SessionValidatorInterceptor</listener-class>
+    </listener>
+
 </zk>

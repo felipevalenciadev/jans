@@ -30,6 +30,7 @@ import io.jans.casa.model.ApplicationConfiguration;
 import io.jans.casa.core.model.ASConfiguration;
 import io.jans.casa.core.model.CustomScript;
 import io.jans.casa.core.model.JansOrganization;
+import io.jans.casa.core.model.JansSessId;
 import io.jans.casa.core.model.GluuConfiguration;
 import io.jans.casa.core.model.Person;
 import io.jans.casa.misc.Utils;
@@ -472,6 +473,21 @@ public class PersistenceService implements IPersistenceService {
 
         return ret;
 
+    }
+
+    public String getSessionsDn() {
+        return "ou=sessions," + rootDn;
+    }
+
+    public boolean oauthSessionExists(String jansId) {
+        try {
+            Filter filter = Filter.createEqualityFilter("jansId", jansId);
+            List<JansSessId> results = find(JansSessId.class, getSessionsDn(), filter, 0, 1);
+            return !results.isEmpty();
+        } catch (Exception e) {
+            logger.error("Error checking OAuth session existence: {}", e.getMessage());
+            return false;
+        }
     }
 
 }
